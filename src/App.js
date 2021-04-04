@@ -11,27 +11,28 @@ import fishFarm from './services/fishFarm';
 
 
 function App() {
-  const myFile = fishFarm ?
-    fishFarm.map((fishItem, index) => {
-      return (
-        <Container kex={index} className='app border border-danger rounded my-5'>
-          <Row className='app border border-primary rounded my-2 mx-1'>
-            <Col md={3} className='py-3'>
-              <FishList fish={fishItem} />
-            </Col>
-          </Row>
-        </Container>
-      )
-    })
-    :
-    (<Spinner animation="border" role="status">
+  const myFile = fishFarm ? fishFarm.map((fishItem, index) => {
+    return (
+      <Col md={3} className='py-3' kex={`${index}col`}>
+        <FishList fish={fishItem} />
+      </Col>
+    )
+  })
+    : (<Spinner animation="border" role="status">
       <span className="sr-only">Loading...</span>
     </Spinner>)
 
   return (
-    <>
-      { myFile}
-    </>
+    <Container className='border border-primary rounded my-5'>
+      <Row >
+        <Col className='header'>
+          <h1>FISH LIST</h1>
+        </Col>
+      </Row>
+      <Row className='app my-2 mx-1'>
+        {myFile}
+      </Row>
+    </Container>
   )
 }
 
