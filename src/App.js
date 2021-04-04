@@ -3,24 +3,23 @@ import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 import { Spinner } from "react-bootstrap";
+import { Container, Row, Col } from 'react-bootstrap';
 
-import { Container } from 'react-bootstrap';
-import Person from './components/personal/person';
-import Friend from './components/friends/friend';
-import Child from './components/children/child';
+import FishList from './components/fishList';
 
-//import readFile from './services/readFile';
-import fileURL from './foreigners.json';
+import fishFarm from './services/fishFarm';
 
 
 function App() {
-  const myFile = fileURL ?
-    fileURL.map((element, index) => {
+  const myFile = fishFarm ?
+    fishFarm.map((fishItem, index) => {
       return (
-        <Container kex={index} className='border border-danger rounded my-5'>
-          <Person data={element} />
-          <Child data={element.children} />
-          <Friend data={element.friends} />
+        <Container kex={index} className='app border border-danger rounded my-5'>
+          <Row className='app border border-primary rounded my-2 mx-1'>
+            <Col md={3} className='py-3'>
+              <FishList fish={fishItem} />
+            </Col>
+          </Row>
         </Container>
       )
     })
